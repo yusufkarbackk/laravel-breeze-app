@@ -30,6 +30,22 @@
                         <td class="px-6 py-4 whitespace-nowrap">{{ $task->description }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $task->is_completed ? 'Completed' : 'Pending' }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $task->created_at }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <form action="{{route('taskComplete', $task->id)}}" method="post">
+                                @csrf
+                                @method('PATCH')
+
+                                @if ($task->is_completed == 0)
+                                    <button class="bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                        {{ $task->is_completed ? 'Pending' : 'Complete' }}
+                                    </button>
+                                @else
+                                    <button class="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                        {{ $task->is_completed ? 'Pending' : 'Complete' }}
+                                    </button>                                
+                                @endif
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

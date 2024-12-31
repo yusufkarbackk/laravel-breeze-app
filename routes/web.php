@@ -22,6 +22,8 @@ Route::get('/', function () {
 Route::get('/dashboard', [TaskController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/create', [TaskController::class, 'create'])->middleware(['auth'])->name('createTask');
 Route::post('/store', [TaskController::class, 'store'])->middleware(['auth'])->name('storeTask');
+Route::patch('/tasks/{task}/complete', [TaskController::class, 'markComplete'])->name('taskComplete');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
